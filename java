@@ -25,3 +25,32 @@ class Solution {
         return false;   
     }
 }
+//anagram
+class Solution {
+    public boolean isAnagram(String s, String t) {
+char[] a=s.toCharArray(),b=t.toCharArray();java.util.Arrays.sort(a);java.util.Arrays.sort(b);return java.util.Arrays.equals(a,b);
+    }
+}
+//replace elements with greatest elements in right side 
+class Solution {
+    public int[] replaceElements(int[] arr) {
+        int max = -1;
+        for(int i = arr.length - 1; i >= 0; i--){
+            int temp = arr[i];
+            arr[i] = max;
+            max = Math.max(max, temp);
+        }
+        return arr;
+    }
+}
+//is subsequence
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        int i=0,j=0;
+        while(i<s.length() && j<t.length()){
+            if(s.charAt(i)==t.charAt(j)) i++;
+            j++;
+        }
+        return i==s.length();
+    }
+}
