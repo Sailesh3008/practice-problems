@@ -1,13 +1,10 @@
-//score of a string
 class Solution {
     public int scoreOfString(String s) {
     int sum=0;
     for(int i=0;i<s.length()-1;i++) sum+=Math.abs(s.charAt(i)-s.charAt(i+1));
     return sum;
-
     }
 }
-//concatenation-of-array
 class Solution {
     public int[] getConcatenation(int[] nums) {
         int[] ans = new int[nums.length*2];
@@ -15,7 +12,6 @@ class Solution {
         return ans;
     }
 }
-//duplicate-integer
 class Solution {
     public boolean hasDuplicate(int[] nums) {
      HashSet<Integer> set = new HashSet<>();
@@ -25,13 +21,11 @@ class Solution {
         return false;   
     }
 }
-//anagram
 class Solution {
     public boolean isAnagram(String s, String t) {
 char[] a=s.toCharArray(),b=t.toCharArray();java.util.Arrays.sort(a);java.util.Arrays.sort(b);return java.util.Arrays.equals(a,b);
     }
 }
-//replace elements with greatest elements in right side 
 class Solution {
     public int[] replaceElements(int[] arr) {
         int max = -1;
@@ -43,7 +37,6 @@ class Solution {
         return arr;
     }
 }
-//is subsequence
 class Solution {
     public boolean isSubsequence(String s, String t) {
         int i=0,j=0;
