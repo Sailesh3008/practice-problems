@@ -1,0 +1,56 @@
+import pandas as pd
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+print("====================================")
+print(" GEOCELL ROAD DESIGN SYSTEM ")
+print(" Sustainable Low Cost Road Model ")
+print("====================================")
+data = {
+    "CBR":[2,3,4,5,6,7,8,9,10,12],
+    "Moisture":[15,14,13,12,11,10,9,8,7,6],
+    "Soil":[1,1,1,2,2,2,3,3,3,3],        
+    "Traffic":[1,1,2,2,2,3,3,3,3,3],     
+    "Geocell":[1,1,1,1,0,0,0,0,0,0]      
+}
+df = pd.DataFrame(data)
+X = df[["CBR","Moisture","Soil","Traffic"]]
+y = df["Geocell"]
+X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.2)
+model = DecisionTreeClassifier()
+model.fit(X_train,y_train)
+print("\nEnter Soil Details")
+CBR = float(input("Enter CBR value: "))
+moisture = float(input("Enter Moisture Content: "))
+soil = int(input("Soil Type (1=Clay 2=Silt 3=Sand): "))
+traffic = int(input("Traffic Level (1=Low 2=Medium 3=High): "))
+prediction = model.predict([[CBR,moisture,soil,traffic]])
+print("\n------ ANALYSIS RESULT ------")
+if prediction[0] == 1:
+    print("Geocell Reinforcement Required")
+else:
+    print("Normal Road Structure Enough")
+if CBR < 3:
+    thickness = 300
+elif CBR < 5:
+    thickness = 250
+elif CBR < 8:
+    thickness = 200
+else:
+    thickness = 150
+if traffic == 3:
+    thickness += 50
+print("Recommended Base Thickness:", thickness,"mm")
+print("\n------ COST ANALYSIS ------")
+normal_cost = float(input("Enter Normal Road Cost per km: "))
+geocell_cost = float(input("Enter Geocell Road Cost per km: "))
+saving = normal_cost - geocell_cost
+percentage = (saving/normal_cost)*100
+print("Cost Saving:",saving)
+print("Saving Percentage:",round(percentage,2),"%")
+print("\n------ SUSTAINABILITY REPORT ------")
+aggregate_saved = thickness * 0.2
+carbon_reduction = aggregate_saved * 0.5
+print("Aggregate Material Saved:",aggregate_saved,"units")
+print("Estimated Carbon Reduction:",carbon_reduction,"kg")
+print("\nSystem Analysis Completed")
+print("Geocell Road System Improves Soil Stability and Reduces Construction Cost")
